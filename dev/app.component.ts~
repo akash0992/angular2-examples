@@ -1,0 +1,32 @@
+import {Component} from 'angular2/core';
+
+@Component({
+    selector: 'my-app',
+    template: `
+        <h1>Angular 2 Boilerplate</h1>
+        <p>Hello World!</p>
+
+        <h3>Enter a location:</h3>
+        <input type="text" (ngKeyUp)="change()"  [(ngModel)]="autocomplete" style="width: 300px;"/>
+
+        <h3>Results:</h3>
+        <ul>
+          <li>Lat: {{ lat }}</li>
+          <li>Lng: {{ lng }}</li>
+        </ul>
+
+    `,
+})
+export class AppComponent {
+
+    lat:number = null;
+    lng:number = null;
+
+    change(){
+        var location = this.autocomplete.getPlace().geometry.location;
+        this.lat = location.lat();
+        this.lng = location.lng();
+
+    }
+
+}
